@@ -112,7 +112,8 @@ def perform_cleaning(data_df, filename):
     dtype_log = {}
     for col in data_df.columns:
         if data_df[col].dtype == object:
-            converted = pd.to_numeric(data_df[col], errors='ignore')
+            converted = pd.to_numeric(data_df[col], errors='coerce')
+
             if not converted.equals(data_df[col]):
                 data_df[col] = converted
                 dtype_log[col] = "string → numeric"
